@@ -1,0 +1,76 @@
+[mist]
+org_id = YOUR_ORG_ID_HERE
+api_token = YOUR_API_TOKEN_HERE
+# Mist cloud the org lives on - matches the portal you log in to:
+#   api.mist.com (US / Global 01)  api.eu.mist.com (EU)  api.gc1.mist.com
+#   api.gc2.mist.com  api.gc3.mist.com (EMEA 02)  api.gc4.mist.com
+#   api.gc5.mist.com  api.gc6.mist.com  api.gc7.mist.com
+#   api.ac2.mist.com  api.ac5.mist.com  api.ac6.mist.com
+# Short forms (eu, gc3) and portal URLs (https://manage.eu.mist.com) also
+# work. Required.
+cloud = 
+# Default guest-portal WLAN to translate (optional - Claude can list the
+# org's portal WLANs and you can name one in the chat instead).
+wlan_id = YOUR_WLAN_ID_HERE
+
+[options]
+# Terms of Service / Privacy / Marketing body text is your own legal wording.
+# N (recommended) leaves it in the default language; Y lets Claude translate it.
+translate_policy_text = N
+
+# Y = translate and write this language, N = leave it alone.
+[languages]
+ar      = N   ; Arabic
+ca-ES   = N   ; Catalan
+cs-CZ   = N   ; Czech
+da-DK   = N   ; Danish
+de-DE   = Y   ; German
+el-GR   = N   ; Greek
+en-GB   = N   ; English (UK) - copies default text
+en-US   = N   ; English (US) - copies default text
+es-ES   = Y   ; Spanish
+fi-FI   = N   ; Finnish
+fr-FR   = Y   ; French
+he-IL   = N   ; Hebrew
+hi-IN   = N   ; Hindi
+hr-HR   = N   ; Croatian
+hu-HU   = N   ; Hungarian
+id-ID   = N   ; Indonesian
+it-IT   = N   ; Italian
+ja-JP   = N   ; Japanese
+ko-KR   = N   ; Korean
+ms-MY   = N   ; Malay
+nb-NO   = N   ; Norwegian (Bokmal)
+nl-NL   = N   ; Dutch
+pl-PL   = N   ; Polish
+pt-BR   = N   ; Portuguese (Brazil)
+pt-PT   = N   ; Portuguese (Portugal)
+ro-RO   = N   ; Romanian
+ru-RU   = N   ; Russian
+sk-SK   = N   ; Slovak
+sv-SE   = N   ; Swedish
+th-TH   = N   ; Thai
+tr-TR   = N   ; Turkish
+uk-UA   = N   ; Ukrainian
+vi-VN   = N   ; Vietnamese
+zh-Hans = N   ; Chinese (Simplified)
+zh-Hant = N   ; Chinese (Traditional)
+
+# Optional - only needed if you're behind a TLS-inspecting proxy (e.g.
+# Zscaler). Delete this whole section, or leave the values blank, to use
+# normal system defaults (certifi's CA store, and the HTTP_PROXY /
+# HTTPS_PROXY / NO_PROXY environment variables if set).
+[network]
+# Path to a PEM file with your proxy's root CA certificate (or a bundle
+# that includes it), so TLS verification succeeds against its inspected
+# connections. Most Zscaler deployments can export this from the client
+# app, or your IT team will have it.
+ca_bundle =
+# Only set this to false if you have no way to obtain the proxy's CA
+# certificate. This disables TLS certificate verification entirely and is
+# not recommended.
+verify_ssl = true
+# Explicit proxy overrides - usually unnecessary, since requests already
+# honors HTTP_PROXY / HTTPS_PROXY / NO_PROXY from the environment.
+http_proxy =
+https_proxy =

@@ -1,0 +1,5 @@
+mist_portal_translate.ini
+backups/
+cache/
+__pycache__/
+.venv/
