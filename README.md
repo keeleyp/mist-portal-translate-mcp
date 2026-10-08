@@ -72,6 +72,29 @@ To keep the .ini somewhere else, add `"env": {"MIST_PORTAL_INI": "/path/to/file.
 
 The optional `[network]` section in the .ini supports a custom CA bundle (`ca_bundle`), disabling TLS verification as a last resort (`verify_ssl`), and explicit proxies. Leave it blank for normal behaviour.
 
+## Example session
+
+> **You:** Translate the guest portal on WLAN 6f8aaed0-8892-4859-bd7b-89312767ba16
+>
+> **Claude:** Only one string needs translating. The welcome message (HTML) has a new third line, "Enter Details To Continue". The other 93 of 94 fields are up to date in every language. I've translated it into the 33 languages, and all of them passed the HTML check. Dry run: 35 changes, nothing typed in by hand would be overwritten. Shall I write it?
+>
+> **You:** yes go ahead
+>
+> **Claude:** Done. All 35 changes were saved and verified; the previous template is in `backups/`.
+
+Other useful prompts:
+- *"List the guest portal WLANs"*
+- *"What would change if I translated the Guest portal?"* (plan only, no writing)
+- *"Translate the portal, and overwrite the manual edits in fr-FR too"*
+
+## Troubleshooting
+
+- **The tools don't appear in Claude Desktop.** Quit it fully (Cmd+Q) and reopen it after editing the config. Server start-up errors are shown under **Settings → Developer**, and logged in `~/Library/Logs/Claude/mcp-server-mist-portal-translate.log`.
+- **`No module named 'mcp.server.fastmcp'`.** This server needs version 2 of the MCP Python SDK (`mcp>=2`), where `FastMCP` was renamed `MCPServer`. Reinstall with `.venv/bin/pip install -r requirements.txt`.
+- **TLS / certificate errors.** You're probably behind Zscaler. Set `[network] ca_bundle` in the .ini to the Zscaler root CA (PEM).
+- **401 or 403 errors.** A 401 means the token isn't valid on that `cloud`. A 403 means the token can't access the org, or doesn't have write access.
+- **Undoing a write.** Every write saves the previous template to `backups/portal_template_<wlan>_<timestamp>.json`.
+
 ## Notes
 
 - Only org-level WLANs are supported. Site-level WLANs aren't.
